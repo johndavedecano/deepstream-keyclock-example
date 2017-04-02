@@ -1,0 +1,21 @@
+{
+  "name": "socket-tester",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-session": "^1.15.2",
+    "hogan-express": "^0.5.2",
+    "keycloak-connect": "^3.0.0",
+    "keycloak-js": "^3.0.0",
+    "superagent": "^3.5.2"
+  }
+}

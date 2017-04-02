@@ -1,0 +1,164 @@
+{
+    "id": "7dc0b006-c959-4177-82f8-7a5dba4b1cd7",
+    "clientId": "demo-realm",
+    "name": "demo Realm",
+    "rootUrl": "http://localhost:3000",
+    "surrogateAuthRequired": false,
+    "enabled": true,
+    "clientAuthenticatorType": "client-secret",
+    "redirectUris": [
+        "http://localhost:3000/*"
+    ],
+    "webOrigins": [
+        "http://localhost:3000*",
+        "http://localhost:3000"
+    ],
+    "notBefore": 0,
+    "bearerOnly": false,
+    "consentRequired": false,
+    "standardFlowEnabled": true,
+    "implicitFlowEnabled": false,
+    "directAccessGrantsEnabled": true,
+    "serviceAccountsEnabled": false,
+    "publicClient": false,
+    "frontchannelLogout": false,
+    "protocol": "openid-connect",
+    "attributes": {
+        "saml.assertion.signature": "false",
+        "saml.force.post.binding": "false",
+        "saml.multivalued.roles": "false",
+        "saml.encrypt": "false",
+        "saml_force_name_id_format": "false",
+        "saml.client.signature": "false",
+        "saml.authnstatement": "false",
+        "saml.server.signature": "false",
+        "saml.server.signature.keyinfo.ext": "false",
+        "saml.onetimeuse.condition": "false"
+    },
+    "fullScopeAllowed": true,
+    "nodeReRegistrationTimeout": 0,
+    "protocolMappers": [
+        {
+            "id": "db3a9cd1-9981-438a-9087-8b2eeda2675a",
+            "name": "username",
+            "protocol": "openid-connect",
+            "protocolMapper": "oidc-usermodel-property-mapper",
+            "consentRequired": true,
+            "consentText": "${username}",
+            "config": {
+                "userinfo.token.claim": "true",
+                "user.attribute": "username",
+                "id.token.claim": "true",
+                "access.token.claim": "true",
+                "claim.name": "preferred_username",
+                "jsonType.label": "String"
+            }
+        },
+        {
+            "id": "25c9be3b-457f-406c-94c4-73c1a74101ba",
+            "name": "role list",
+            "protocol": "saml",
+            "protocolMapper": "saml-role-list-mapper",
+            "consentRequired": false,
+            "config": {
+                "single": "false",
+                "attribute.nameformat": "Basic",
+                "attribute.name": "Role"
+            }
+        },
+        {
+            "id": "892a428f-b18d-4bb8-828f-8b9dcaed0b04",
+            "name": "given name",
+            "protocol": "openid-connect",
+            "protocolMapper": "oidc-usermodel-property-mapper",
+            "consentRequired": true,
+            "consentText": "${givenName}",
+            "config": {
+                "userinfo.token.claim": "true",
+                "user.attribute": "firstName",
+                "id.token.claim": "true",
+                "access.token.claim": "true",
+                "claim.name": "given_name",
+                "jsonType.label": "String"
+            }
+        },
+        {
+            "id": "f34a93d4-24fd-4500-94fc-f3f73e0eedcf",
+            "name": "role",
+            "protocol": "openid-connect",
+            "protocolMapper": "oidc-usermodel-client-role-mapper",
+            "consentRequired": false,
+            "config": {
+                "multivalued": "true",
+                "userinfo.token.claim": "true",
+                "id.token.claim": "true",
+                "access.token.claim": "true",
+                "claim.name": "role",
+                "jsonType.label": "String",
+                "usermodel.clientRoleMapping.clientId": "demo-realm"
+            }
+        },
+        {
+            "id": "e6137c75-11c4-462a-9925-6db7bae5decf",
+            "name": "realm_role",
+            "protocol": "openid-connect",
+            "protocolMapper": "oidc-usermodel-realm-role-mapper",
+            "consentRequired": false,
+            "config": {
+                "multivalued": "true",
+                "userinfo.token.claim": "true",
+                "id.token.claim": "true",
+                "access.token.claim": "true",
+                "claim.name": "realm_role",
+                "jsonType.label": "String"
+            }
+        },
+        {
+            "id": "d0d6e8de-f66e-47d3-8c0f-bf9aada68b4f",
+            "name": "family name",
+            "protocol": "openid-connect",
+            "protocolMapper": "oidc-usermodel-property-mapper",
+            "consentRequired": true,
+            "consentText": "${familyName}",
+            "config": {
+                "userinfo.token.claim": "true",
+                "user.attribute": "lastName",
+                "id.token.claim": "true",
+                "access.token.claim": "true",
+                "claim.name": "family_name",
+                "jsonType.label": "String"
+            }
+        },
+        {
+            "id": "7a992330-96a2-4011-b74e-40b8e3817451",
+            "name": "email",
+            "protocol": "openid-connect",
+            "protocolMapper": "oidc-usermodel-property-mapper",
+            "consentRequired": true,
+            "consentText": "${email}",
+            "config": {
+                "userinfo.token.claim": "true",
+                "user.attribute": "email",
+                "id.token.claim": "true",
+                "access.token.claim": "true",
+                "claim.name": "email",
+                "jsonType.label": "String"
+            }
+        },
+        {
+            "id": "775bac06-44e9-4e48-a6c0-c1ecbf758a25",
+            "name": "full name",
+            "protocol": "openid-connect",
+            "protocolMapper": "oidc-full-name-mapper",
+            "consentRequired": true,
+            "consentText": "${fullName}",
+            "config": {
+                "id.token.claim": "true",
+                "access.token.claim": "true"
+            }
+        }
+    ],
+    "useTemplateConfig": false,
+    "useTemplateScope": false,
+    "useTemplateMappers": false
+}

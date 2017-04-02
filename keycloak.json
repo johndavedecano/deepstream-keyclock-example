@@ -1,0 +1,11 @@
+{
+  "realm": "demo",
+  "bearer-only": true,
+  "auth-server-url": "http://localhost:8080/auth",
+  "ssl-required": "external",
+  "resource": "demo-realm",
+  "use-resource-role-mappings": true,
+  "credentials": {
+    "secret": "de6d6b2a-12b5-41bf-b506-d4e88a7f9ca9"
+  }
+}

@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Socket Server Tester</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://rawgit.com/deepstreamIO/deepstream.io-client-js/master/dist/deepstream.min.js"></script>
+    <script src="/js/keycloak/keycloak.js"></script>
+    <script type="text/javascript">
+      var intialKeycloak = function() {
+        
+        window.ds = deepstream('localhost:6020');
+        window.keycloak = new Keycloak('/js/keycloak/keycloak.json');
+
+        keycloak.onAuthSuccess = updateState;
+        keycloak.onAuthRefreshSuccess = updateState;
+        keycloak.onAuthLogout = updateState;
+
+        var initConfig = {
+          onLoad: "check-sso",
+          checkLoginIframe: false,
+          token: window.localStorage.getItem('access_token') || '',
+          idToken: window.localStorage.getItem('id_token') || '',
+          refreshToken: window.localStorage.getItem('refresh_token') || ''
+        };
+
+        function initSocket(token) {
+          ds.login({
+            username: 'admin',
+            access_token: token
+          }, function(success, data) {
+            if (success) {
+              console.log(data);
+            }
+          });
+        }
+
+        function updateState() {
+          if (keycloak.authenticated) {
+              window.localStorage.setItem('access_token', keycloak.token);
+              window.localStorage.setItem('refresh_token', keycloak.refreshToken);
+              window.localStorage.setItem('id_token', keycloak.idToken);
+              // Initialize socket connection.
+              initSocket(keycloak.token);
+          } else {
+              window.localStorage.removeItem('access_token');
+              window.localStorage.removeItem('refresh_token');
+              window.localStorage.removeItem('id_token');
+              keycloak.login({redirectUri: window.location.href});
+          }
+        }
+
+        function error() {
+          console.log("Unable to authenticate.");
+        }
+
+        keycloak.init(initConfig).success(updateState);
+      }
+
+      $(document).ready(intialKeycloak);
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
