@@ -29,7 +29,7 @@
           idToken: window.localStorage.getItem('id_token') || '',
           refreshToken: window.localStorage.getItem('refresh_token') || ''
         };
-
+        
         function initSocket(token) {
           ds.login({
             username: 'admin',
